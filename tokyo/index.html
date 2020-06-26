@@ -2,9 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="ja">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="twitter:card"  content="summary_large_image" />
+<meta name="twitter:image" content="https://rin7n.github.io/tokyo/image.png" /> 
+<meta name="twitter:title" content="都知事選ソート2020" />
+<meta name="twitter:description" content="東京都知事を誰にするか決められない。そんなときに二人づつに分けて選んでいけばきっと投票出来る人が見つかる！？" />
+
 <title>都知事選ソート2020</title>
 <script type="text/javascript">
 <!--
@@ -198,6 +203,17 @@ function showResult() {
 	var sameRank = 1;
 	var str = "";
 	var i;
+	var tweet;
+	var hashtag = "東京都知事選";
+	tweet = "都知事選ソートで選んだのは\n";
+	tweet += "1位 "+namMember[lstMember[0][0]].split('<br>')[0] + "\n";
+	tweet += "2位 "+namMember[lstMember[0][1]].split('<br>')[0] + "\n";
+	tweet += "3位 "+namMember[lstMember[0][2]].split('<br>')[0] + "\n";
+	tweet = encodeURI(tweet);
+	hashtag = encodeURI(hashtag);
+
+	str = "<button id=\"tweet\" onclick=\"window.open().location.href='https://twitter.com/share?url=https://rin7n.github.io/tokyo/index.html&amp;text="+tweet+"&amp;hashtags="+hashtag+"&amp;count=none&amp;lang=ja'\">結果をツイートする</button>";
+
 
 	str += "<table style=\"width:400px; font-size:18px; line-height:120%; margin-left:auto; margin-right:auto; border:1px solid #000; border-collapse:collapse\" align=\"center\">";
 	str += "<tr><td style=\"color:#ffffff; background-color:#000; text-align:center;\">順位<\/td><td style=\"color:#ffffff; background-color:#000; text-align:center;\">名前<\/td><\/tr>";
@@ -284,11 +300,37 @@ function toNameFace(n){
 	height: 50px;
 	border: 2px solid #000;
 }
+h3 {
+    color: #364e96;
+    text-align: center;
+    padding: 0.5em 0;
+    border-top: solid 3px #364e96;
+    border-bottom: solid 3px #364e96;
+}
+#tweet {
+    background-color: #55acee;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 24px;
+    display: inline-block;
+    opacity: 0.8;
+    border-radius: 4px;
+    width: 240px;
+    margin-bottom: 10px;
+	margin-left: auto;
+    margin-right: auto;
+
+}
 //-->
 </style>
 </head>
 
 <body>
+<h3>
+都知事選ソート2020
+</h3>
+
 <table id="mainTable" align="center">
 	<tr>
 		<td id="battleNumber" colspan="3" style="padding-bottom: 10px;">
@@ -313,6 +355,7 @@ function toNameFace(n){
 	</tr>
 </table><br><br>
 <div id="resultField" style="text-align:center;">
+
 やり直す場合は下のリンクを押してください。
 </div>
 <script type="text/javascript">
